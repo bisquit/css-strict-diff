@@ -19,6 +19,7 @@ test('diff', async () => {
     `
     h1 {
       font-size: 2rem;
+      font-weight: bold;
     }
     p {
       margin: 10px;
@@ -26,8 +27,26 @@ test('diff', async () => {
     span {
       color: red;
     }
+    strong {
+      color: blue;
+    }
   `
   );
 
-  console.log('result', result);
+  expect(result).toEqual({
+    added: {
+      h1: { 'font-weight': 'bold' },
+      span: { color: 'red' },
+      strong: { color: 'blue' },
+    },
+    removed: {
+      h2: {
+        'margin-top': '0',
+        'margin-right': '0',
+        'margin-bottom': '0',
+        'margin-left': '0',
+      },
+    },
+    changed: { h1: { 'font-size': ['1rem', '2rem'] } },
+  });
 });

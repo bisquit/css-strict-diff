@@ -25,7 +25,7 @@ export function cssToRules(css: string): RuleList {
       const decls: DeclarationList = [{ prop, value }];
 
       const transformed = transform(decls);
-      selectorDecls = [...transformed];
+      selectorDecls = [...selectorDecls, ...transformed];
     });
 
     postcssRule.selectors.forEach((postcssSelector) => {
