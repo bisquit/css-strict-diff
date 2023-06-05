@@ -1,53 +1,48 @@
 import microdiff from 'microdiff';
 import { parse } from 'postcss';
 
+import { transform } from './transform';
+import { DeclarationList, Rules } from './types';
+
 /**
  * PostCSS API
  * https://postcss.org/api/
  */
 
-type Selector = string;
-
-type Decl = {
-  prop: string;
-  value: string;
-};
-
-type RuleMap = Map<Selector, Decl[]>;
-type RuleObj = { [key: Selector]: Decl[] };
-
 export function diff(baseCss: string, afterCss: string) {
-  const baseCssRuleMap = toRuleMap(baseCss);
-  const afterCssRuleMap = toRuleMap(afterCss);
+  const baseCssRules = toRules(baseCss);
+  const afterCssRules = toRules(afterCss);
 
-  const result = microdiff(baseCssRuleMap, afterCssRuleMap);
+  const result = microdiff(baseCssRules, afterCssRules);
   console.log('result', result);
 }
 
-export function toRuleMap(css: string): RuleObj {
+export function toRules(css: string): Rules {
   const root = parse(css);
 
-  const map = new Map() as RuleMap;
-  const result = {} as RuleObj;
+  const result = {} as Rules;
 
   root.walkRules((rule) => {
-    const decls = [] as { prop: string; value: string }[];
+    let declBlock = {} as DeclarationList;
     rule.walkDecls((decl) => {
       const { prop, value } = decl;
-      decls.push({ prop, value });
+
+      const transformed = transform({ [prop]: value });
+      declBlock = {
+        ...declBlock,
+        ...transformed,
+      };
     });
 
     rule.selectors.forEach((selector) => {
-      // map.set(selector, [...(map.get(selector) ?? []), ...decls]);
-      result[selector] = [...(result[selector] ?? []), ...decls];
+      result[selector] = {
+        ...(result[selector] ?? {}),
+        ...declBlock,
+      };
     });
   });
 
   console.log(result);
 
   return result;
-}
-
-function expandShorthand(prop: string, value: string) {
-  return undefined;
 }
