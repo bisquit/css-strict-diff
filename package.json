@@ -1,6 +1,6 @@
 {
-  "name": "scopify",
-  "description": "wip",
+  "name": "css-strict-diff",
+  "description": "Strictly take diff between two css string",
   "version": "0.0.0",
   "license": "MIT",
   "type": "module",
@@ -86,9 +86,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bisquit/scopify.git"
+    "url": "https://github.com/bisquit/css-strict-diff.git"
   },
   "bugs": {
-    "url": "https://github.com/bisquit/scopify/issues"
+    "url": "https://github.com/bisquit/css-strict-diff/issues"
   }
 }
