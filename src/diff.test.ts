@@ -1,7 +1,6 @@
 import { expect, test } from 'vitest';
 
 import { diff } from './diff';
-import { transform } from './transform';
 
 test('diff', async () => {
   const result = diff(

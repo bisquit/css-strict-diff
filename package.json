@@ -7,7 +7,9 @@
   "main": "./dist/index.js",
   "exports": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup src/index.ts --format esm --dts --clean",
     "test": "vitest",
@@ -19,43 +21,23 @@
   "dependencies": {
     "just-group-by": "^2.2.0",
     "microdiff": "^1.3.2",
-    "postcss": "^8.4.24",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "postcss": "^8.4.24"
   },
   "devDependencies": {
-    "@types/react": "^18.2.7",
-    "@types/react-dom": "^18.2.4",
     "@typescript-eslint/eslint-plugin": "^5.59.8",
     "@typescript-eslint/parser": "^5.59.8",
-    "@vitejs/plugin-react": "^4.0.0",
-    "autoprefixer": "^10.4.14",
     "eslint": "^8.41.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.1",
     "eslint-plugin-simple-import-sort": "^10.0.0",
-    "execa": "^7.1.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.8.8",
-    "prettier-plugin-tailwindcss": "^0.3.0",
-    "tailwindcss": "^3.3.2",
     "tsup": "^6.7.0",
     "typescript": "^5.1.3",
     "vite": "^4.3.9",
     "vitest": "^0.31.4"
   },
-  "postcss": {
-    "plugins": {
-      "tailwindcss": {},
-      "autoprefixer": {}
-    }
-  },
   "prettier": {
     "editorconfig": true,
-    "singleQuote": true,
-    "plugins": [
-      "prettier-plugin-tailwindcss"
-    ]
+    "singleQuote": true
   },
   "eslintConfig": {
     "root": true,
@@ -70,20 +52,17 @@
     },
     "plugins": [
       "@typescript-eslint",
-      "react-refresh",
       "simple-import-sort"
     ],
     "extends": [
       "eslint:recommended",
-      "plugin:@typescript-eslint/recommended",
-      "plugin:react-hooks/recommended"
+      "plugin:@typescript-eslint/recommended"
     ],
     "rules": {
       "@typescript-eslint/no-unused-vars": 0,
       "@typescript-eslint/no-explicit-any": 0,
       "@typescript-eslint/explicit-module-boundary-types": 0,
       "@typescript-eslint/no-non-null-assertion": 0,
-      "react-refresh/only-export-components": "warn",
       "simple-import-sort/imports": "error",
       "simple-import-sort/exports": "error"
     }
